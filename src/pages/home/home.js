@@ -3,6 +3,10 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Query } from "react-apollo";
+import { ALL_USERS } from "../../apollo/queries";
+
+import { ProductsGrid } from "../../components/product/products_grid";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -13,17 +17,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function Home() {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xl">
       <CssBaseline />
       <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Home
-        </Typography>
+        <Query query={ALL_USERS}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) {
+              console.log("###########> " + error);
+              return <p>Error :(</p>;
+            }
+            return <ProductsGrid users={data.users.data} />;
+          }}
+        </Query>
       </div>
     </Container>
   );
 }
+//<ProductsGrid />
