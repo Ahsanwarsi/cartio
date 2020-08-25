@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import { Routes } from "../constants";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,21 +28,25 @@ const useStyles = makeStyles((theme) => ({
 export const Header = () => {
   const classes = useStyles();
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color="transparent">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          Whatsup React
+          Cartio
         </Typography>
 
-        <Button component={Link} to="/" color={"inherit"}>
+        <Button component={Link} to={Routes.root} color={"inherit"}>
           Home
         </Button>
 
-        <Button component={Link} to="/login" color={"inherit"}>
+        <Button component={Link} to={Routes.categories} color={"inherit"}>
+          Categories
+        </Button>
+
+        <Button component={Link} to={Routes.login} color={"inherit"}>
           Login
         </Button>
 
-        <Button component={Link} to="/register" color={"inherit"}>
+        <Button component={Link} to={Routes.register} color={"inherit"}>
           Register
         </Button>
 
