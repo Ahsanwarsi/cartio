@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 export const ProductCard = ({ product }) => {
   const classes = useStyles();
   const { addToCart, cart } = useContext(AppContext);
-  const hasInCart = cart.products.some((p) => p.id == product.id);
+  const hasInCart = cart.products.some((p) => p.id === product.id);
 
   return (
     <Card className={classes.root}>
@@ -54,14 +54,12 @@ export const ProductCard = ({ product }) => {
 
       <CardActions className={classes.actions}>
         {hasInCart ? (
-          <Typography color={"secondary"}>Added in Cart</Typography>
+          <Typography color={"secondary"}>Added to Cart</Typography>
         ) : (
           <Button
             size="small"
             color="primary"
-            onClick={() => {
-              if (!hasInCart) addToCart(product);
-            }}
+            onClick={() => !hasInCart && addToCart(product)}
           >
             Add to Cart
           </Button>
@@ -70,5 +68,3 @@ export const ProductCard = ({ product }) => {
     </Card>
   );
 };
-
-//addToCart(product)
