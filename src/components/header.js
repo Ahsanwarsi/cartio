@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Toolbar,
   IconButton,
   Typography,
   Button,
+  Badge,
 } from "@material-ui/core";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
+import { ShoppingCart } from "@material-ui/icons";
+
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import { Routes } from "../constants";
+import { AppContext } from "../context/app/app_context";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,8 +30,11 @@ const useStyles = makeStyles((theme) => ({
 
 export const Header = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const { cart } = useContext(AppContext);
+
   return (
-    <AppBar position="static" color="transparent">
+    <AppBar position="sticky" color="inherit">
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
           Cartio
@@ -51,13 +57,15 @@ export const Header = () => {
         </Button>
 
         <IconButton
-          aria-label="account of current user"
+          aria-label="Cart"
           aria-controls="menu-appbar"
           aria-haspopup="true"
-          //onClick={handleMenu}
+          onClick={() => history.push({ pathname: "/cart" })}
           color="inherit"
         >
-          <AccountCircle />
+          <Badge badgeContent={cart.products.length} color="primary">
+            <ShoppingCart />
+          </Badge>
         </IconButton>
       </Toolbar>
     </AppBar>
