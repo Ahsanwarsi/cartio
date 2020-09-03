@@ -12,6 +12,7 @@ import { Register } from "../pages/register";
 import { Home } from "../pages/home";
 import { Categories } from "../pages/categories";
 import { Products } from "../pages/product";
+import { Cart } from "../pages/cart";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
           <Switch>
             <Route path="/categories" exact component={Categories} />
             <Route path="/products" exact component={Products} />
+          </Switch>
+
+          <Switch>
+            <Route path="/cart" exact component={Cart} />
           </Switch>
         </Router>
       </AppProvider>
