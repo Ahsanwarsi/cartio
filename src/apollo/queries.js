@@ -30,6 +30,7 @@ export const ALL_PRODUCTS = gql`
       name
       image
       description
+      stock
     }
   }
 `;
@@ -46,6 +47,7 @@ export const CATEGORY = gql`
         price
         image
         description
+        stock
       }
     }
   }
