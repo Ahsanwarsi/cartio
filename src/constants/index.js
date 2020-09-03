@@ -5,4 +5,5 @@ export const Routes = {
   login: "/login",
   register: "/register",
   categories: "/categories",
+  cart: "/cart",
 };
