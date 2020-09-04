@@ -30,10 +30,9 @@ export default function Cart() {
   return (
     <Container component="main" maxWidth="xl" className={classes.container}>
       <div className={classes.paper}>
-        <CssBaseline />
         <Typography
           variant="h3"
-          styles={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          styles={{ alignItems: "center", justifyContent: "center" }}
         >
           Cart
         </Typography>
@@ -46,18 +45,10 @@ export default function Cart() {
               {cart.products.length > 0 && (
                 <CartList products={cart.products} />
               )}
-
-              {/*<Query query={CATEGORIES}>
-            {({ loading, error, data }) => {
-              if (loading) return <CircularProgress />;
-              if (error) return <p>Error :(</p>;
-              return <CategoriesGrid categories={data.allCategories} />;
-            }}
-          </Query>*/}
             </div>
           </Grid>
           <Grid item xs={6}>
-            <CartSummary />
+            <CartSummary cart={cart} />
           </Grid>
         </Grid>
       ) : (
